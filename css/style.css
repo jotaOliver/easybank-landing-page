@@ -251,6 +251,16 @@ footer nav a{
    filter: brightness(1.1);
    color: var(--white);
 }
+[data-scroll]{
+    opacity: 0;
+    transform: translate3d(-30px, 0, 0);
+    transition: .3s;
+  }
+  
+[data-scroll].ativo {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+}
 
 @media screen and (max-width: 1440px){
     .container{
@@ -342,6 +352,7 @@ footer nav a{
         margin: 0.4rem;
         background-color: var(--dark-blue);
         /* box-shadow: 0 8px var(--dark-blue),0 -8px var(--dark-blue); */
+        transition: .3s;
     }
     header nav .btn-mobile.active span:nth-child(1){
         display: none;
@@ -354,6 +365,7 @@ footer nav a{
     }
     header nav ul{
         display: none;
+        animation: subirSuave .3s reverse;
     }
     header nav ul.active{
         position: absolute;
@@ -367,6 +379,17 @@ footer nav a{
         background: #fff;
         padding: 2rem;
         border-radius: 10px;
+        animation: subirSuave .3s forwards;
+    }
+    @keyframes subirSuave{
+        from{
+            transform: translate(-50%, 10px) translate3d(0,-30px,0);
+            opacity: 0;
+        }
+        to{
+            transform: translate(-50%, 10px) translate3d(0,0,0);
+            opacity: 1;
+        }
     }
     header nav ul li {
         padding: 0.625rem;

@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- displays site properly based on user's device -->
-
   <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
   <link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -22,6 +21,8 @@
       color: hsl(228, 45%, 44%);
     }
   </style>
+
+
 </head>
 
 <body>
@@ -30,7 +31,7 @@
       <a href="">
         <img src="./images/logo.svg" alt="Easybank Logo">
       </a>
-      <ul>
+      <ul data-menu>
         <li>
           <a href="#">Home</a>
         </li>
@@ -48,7 +49,7 @@
         </li>
       </ul>
       <a href="#" class="btn">Request Ivite</a>
-      <span class="btn-mobile active">
+      <span class="btn-mobile ">
         <span></span>
         <span></span>
         <span></span>
@@ -56,22 +57,22 @@
     </nav>
   </header>
   <main>
-    <section class="banner">
+    <section class="banner" >
       <div class="container grid-banner">
-        <div>
+        <div data-scroll>
           <h1> Next generation digital banking</h1>
           <p>Take your financial life online. Your Easybank account will be a one-stop-shop
             for spending, saving, budgeting, investing, and much more.</p>
           <a href="" class="btn">Request Invite</a>
         </div>
-        <div>
+        <div data-scroll>
           <img src="./images/bg-intro-desktop.svg" alt="bg-intro">
           <img src="./images/image-mockups.png" alt="mockups cel">
         </div>
       </div>
     </section>
     <section class="services">
-      <div class="container">
+      <div class="container" data-scroll>
         <h2> Why choose Easybank?</h2>
         <p>We leverage Open Banking to turn your bank account into your financial hub.<br />
           Control your finances like never before.</p>
@@ -104,7 +105,7 @@
         </div>
       </div>
     </section>
-    <article class="latest-article ">
+    <article class="latest-article " data-scroll>
       <div class="container">
         <h2>Latest Articles</h2>
         <div class="latest-article-grid">
@@ -205,5 +206,47 @@
     Coded by <a href="#">Jessé de Oliveira Aguiar</a>.
   </div>
 </body>
+<script>
+  function initMenuMobile() {
+    const menuMobile = document.querySelector('.btn-mobile');
+    const menu = document.querySelector('[data-menu]');
+    const eventClient = ['touchstart', 'click'];
+
+    function handleClick(event) {
+      menu.classList.toggle('active');
+      menuMobile.classList.toggle('active');
+
+    }
+
+    eventClient.forEach((item) => {
+      menuMobile.addEventListener(item, handleClick);
+    })
+  }
+
+
+  function initAnimacaoScroll() {
+    const sections = document.querySelectorAll('[data-scroll]');
+    if (sections.length) {
+      const windowMetade = window.innerHeight * 0.6;
+
+      function animaScroll() {
+        sections.forEach((section) => {
+          const sectionTop = section.getBoundingClientRect().top - windowMetade;
+          if (sectionTop < 0) {
+            section.classList.add('ativo');
+          }else{
+            section.classList.remove('ativo');
+          }
+        });
+      }
+      animaScroll();
+      window.addEventListener('scroll', animaScroll);
+    }
+  }
+  initMenuMobile();
+  initAnimacaoScroll();
+
+
+</script>
 
 </html>
