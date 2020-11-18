@@ -210,17 +210,15 @@
   function initMenuMobile() {
     const menuMobile = document.querySelector('.btn-mobile');
     const menu = document.querySelector('[data-menu]');
-    const eventClient = ['touchstart', 'click'];
+    const eventClient = 'click';
 
     function handleClick(event) {
       menu.classList.toggle('active');
       menuMobile.classList.toggle('active');
 
-    }
-
-    eventClient.forEach((item) => {
-      menuMobile.addEventListener(item, handleClick);
-    })
+    }   
+    menuMobile.addEventListener(eventClient, handleClick);
+    
   }
 
 
